@@ -159,7 +159,7 @@ div[data-testid="stPlotlyChart"] {
 </style>
 """, unsafe_allow_html=True)
 
-df = pd.read_csv("data/sales.csv.gz", sep=";")
+df = pd.read_csv("NEXUS_dashboard/data/sales.csv.gz", sep=";")
 
 st.title("NEXUS Executive Dashboard")
 st.caption("Poland PC/Laptop Market | 2022–YTD 2026")
