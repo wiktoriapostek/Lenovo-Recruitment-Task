@@ -7,32 +7,88 @@ st.set_page_config(
     layout="wide"
 )
 
-
 st.markdown("""
 <style>
 @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-80px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 [data-testid="stSidebar"] {
     background: #102845;
-    min-width: 337px;
-    width: 337px;
     animation: slideInLeft 0.7s ease-out;
+    min-width: 260px;
+    width: 260px;
 }
 
 [data-testid="stSidebar"] > div:first-child {
-    width: 337px;
+    width: 100% !important;
 }
 
 [data-testid="stSidebar"] .block-container {
-    padding: 1rem 0.7rem;
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.4rem !important;
+    padding-left: 0.7rem !important;
+    padding-right: 0.7rem !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.35rem !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.3rem !important;
+    line-height: 1.2 !important;
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    margin-top: 0.3rem !important;
+    margin-bottom: 0.35rem !important;
+    line-height: 1.15 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stVerticalBlockBorderWrapper"] {
+    margin-top: 0.15rem !important;
+    margin-bottom: 0.2rem !important;
+    padding-top: 0.3rem !important;
+    padding-bottom: 0.3rem !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stVerticalBlockBorderWrapper"] > div {
+    gap: 0.15rem !important;
+}
+
+[data-testid="stSidebar"] .stColumn {
+    padding: 0 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
+    gap: 0.35rem !important;
 }
 
 [data-testid="stSidebar"] label,
@@ -41,19 +97,17 @@ st.markdown("""
     color: white !important;
 }
 
-[data-testid="stSidebar"] .stMarkdown p,
-[data-testid="stSidebar"] [data-testid="stCheckbox"] label {
-    font-size: 21px !important;
+[data-testid="stMetric"] {
+    background: white;
+    padding: 18px;
+    border-radius: 14px;
+    border: 1px solid #D9DEE5;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    animation: fadeUp 0.7s ease-out;
 }
 
-[data-testid="stSidebar"] [data-testid="stCheckbox"] {
-    padding: 0 !important;
-    margin: 0 0 -4px 0 !important;
-}
-
-[data-testid="stSidebar"] [data-testid="stCheckbox"] > label > div:first-child {
-    width: 18px !important;
-    height: 18px !important;
+[data-testid="stVerticalBlockBorderWrapper"] {
+    animation: fadeUp 0.7s ease-out;
 }
 
 [data-testid="stHeader"] {
@@ -66,58 +120,15 @@ st.markdown("""
     animation: fadeUp 0.8s ease-out;
 }
 
-[data-testid="stHeading"] h1 {
-    font-size: 58px !important;
+h1, h2, h3 {
     color: #102845 !important;
 }
 
-[data-testid="stHeading"] h2 {
-    font-size: 46px !important;
-    color: #102845 !important;
-}
-
-[data-testid="stHeading"] h3 {
-    font-size: 30px !important;
-    color: #102845 !important;
-}
-
-.main .block-container p,
-.main .block-container li,
-.main .block-container label {
-    font-size: 17px;
-}
-
-[data-testid="stCaptionContainer"] p {
-    font-size: 18px !important;
-}
-
-[data-testid="stMetric"] {
-    background: white;
-    padding: 18px;
-    border: 1px solid #D9DEE5;
-    border-radius: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    animation: fadeUp 0.7s ease-out;
-}
-
-[data-testid="stMetricValue"] {
-    font-size: 44px !important;
-}
-
-[data-testid="stMetricLabel"],
-[data-testid="stMetricLabel"] * {
-    font-size: 21px !important;
-}
-
-[data-testid="stVerticalBlockBorderWrapper"],
 div[data-testid="stPlotlyChart"] {
+    background: white;
+    border-radius: 14px;
+    padding: 8px;
     animation: fadeUp 0.8s ease-out;
-}
-
-div[data-testid="stPlotlyChart"] {
-    background: white;
-    border-radius: 14px;
-    padding: 10px;
 }
 
 .takeaway-box {
@@ -127,6 +138,7 @@ div[data-testid="stPlotlyChart"] {
     padding: 18px 22px;
     margin-bottom: 12px;
     min-height: 105px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -137,171 +149,124 @@ div[data-testid="stPlotlyChart"] {
 .takeaway-title {
     color: #102845;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 6px;
 }
 
 .takeaway-text {
     color: #333333;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.5;
 }
 
-.chart-title {
-    color: #102845;
-    font-weight: 600;
-    font-size: 23px;
-    line-height: 1.3;
-    margin-bottom: 8px;
+[data-testid="stSidebar"] [data-testid="stCheckbox"] {
+    padding: 0 !important;
+    margin: -1px 0 !important;
+    min-height: 23px !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label {
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stCheckbox"] > label > div:first-child {
+    width: 13px !important;
+    height: 13px !important;
+    min-width: 13px !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stCheckbox"] > label {
+    gap: 5px !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-def sidebar_checkboxes(title, options, columns=2, key_prefix="filter"):
-    st.sidebar.markdown(f"**{title}**")
-    selected = []
-
-    with st.sidebar.container(border=True):
-        cols = st.columns(columns)
-
-        for i, value in enumerate(options):
-            with cols[i % columns]:
-                if st.checkbox(
-                    value,
-                    value=True,
-                    key=f"{key_prefix}_{value}"
-                ):
-                    selected.append(value)
-
-    return selected
-
-
-def line_layout(fig, x_values, y_title, sparse_x=False, percent=False, legend=False):
-    xaxis = dict(
-        title_font=dict(size=17),
-        tickfont=dict(size=14),
-        tickangle=-35
-    )
-
-    if sparse_x:
-        xaxis.update(
-            tickmode="array",
-            tickvals=x_values.iloc[::2],
-            ticktext=x_values.iloc[::2]
-        )
-
-    fig.update_layout(
-        xaxis_title="Quarter",
-        yaxis_title=y_title,
-        plot_bgcolor="white",
-        paper_bgcolor="white",
-        margin=dict(l=30, r=30, t=10, b=55),
-        font=dict(size=16, color="#102845"),
-        xaxis=xaxis,
-        yaxis=dict(
-            title_font=dict(size=17),
-            tickfont=dict(size=14)
-        )
-    )
-
-    if percent:
-        fig.update_yaxes(tickformat=".0%")
-
-    if legend:
-        fig.update_layout(
-            legend_title="Vendor",
-            legend=dict(
-                font=dict(size=14),
-                title_font=dict(size=15)
-            )
-        )
-
-
-def bar_layout(fig):
-    fig.update_layout(
-        xaxis_title="Price Band",
-        yaxis_title="Share of Sales",
-        plot_bgcolor="white",
-        paper_bgcolor="white",
-        margin=dict(l=30, r=30, t=10, b=45),
-        font=dict(size=16, color="#102845"),
-        xaxis=dict(
-            title_font=dict(size=17),
-            tickfont=dict(size=15)
-        ),
-        yaxis=dict(
-            title_font=dict(size=17),
-            tickfont=dict(size=14)
-        )
-    )
-
-
-def takeaway(number, title, text):
-    st.markdown(
-        f"""
-        <div class="takeaway-box">
-            <div class="takeaway-title">{number}. {title}</div>
-            <div class="takeaway-text">{text}</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
-
 df = pd.read_csv("NEXUS_dashboard/data/sales.csv.gz", sep=";")
-
-
 
 st.title("NEXUS Executive Dashboard")
 st.caption("Poland PC/Laptop Market | 2022 – YTD 2026")
 st.markdown("<hr>", unsafe_allow_html=True)
 
-
-
 st.sidebar.header("Filters")
+st.sidebar.markdown("**Quarter**")
 
 quarters = sorted(df["QUARTERS"].dropna().unique())
+selected_quarters = []
+
+with st.sidebar.container(border=True):
+    col1, col2, col3 = st.columns(3)
+
+    for i, q in enumerate(quarters):
+        col = [col1, col2, col3][i % 3]
+
+        with col:
+            if st.checkbox(q, value=True, key=f"quarter_{q}"):
+                selected_quarters.append(q)
+
+st.sidebar.markdown("**Usage**")
+
 usage_options = sorted(df["Usage"].dropna().unique())
+selected_usage = []
+
+with st.sidebar.container(border=True):
+    col1, col2 = st.columns(2)
+
+    for i, value in enumerate(usage_options):
+        col = col1 if i % 2 == 0 else col2
+
+        with col:
+            if st.checkbox(value, value=True, key=f"usage_{value}"):
+                selected_usage.append(value)
+
+st.sidebar.markdown("**LINE**")
+
 line_options = sorted(df["LINE"].dropna().unique())
+selected_line = []
+
+with st.sidebar.container(border=True):
+    col1, col2 = st.columns(2)
+
+    for i, value in enumerate(line_options):
+        col = col1 if i % 2 == 0 else col2
+
+        with col:
+            if st.checkbox(value, value=True, key=f"line_{value}"):
+                selected_line.append(value)
+
+st.sidebar.markdown("**SEGMENTS**")
+
 segment_options = sorted(df["SEGMENTS"].dropna().unique())
+selected_segments = []
 
-selected_quarters = sidebar_checkboxes(
-    "Quarter", quarters, columns=3, key_prefix="quarter"
-)
+with st.sidebar.container(border=True):
+    col1, col2 = st.columns(2)
 
-selected_usage = sidebar_checkboxes(
-    "Usage", usage_options, columns=2, key_prefix="usage"
-)
+    for i, value in enumerate(segment_options):
+        col = col1 if i % 2 == 0 else col2
 
-selected_line = sidebar_checkboxes(
-    "LINE", line_options, columns=2, key_prefix="line"
-)
-
-selected_segments = sidebar_checkboxes(
-    "SEGMENTS", segment_options, columns=2, key_prefix="segment"
-)
+        with col:
+            if st.checkbox(value, value=True, key=f"segment_{value}"):
+                selected_segments.append(value)
 
 filtered_df = df[
-    df["QUARTERS"].isin(selected_quarters)
-    & df["Usage"].isin(selected_usage)
-    & df["LINE"].isin(selected_line)
-    & df["SEGMENTS"].isin(selected_segments)
+    df["QUARTERS"].isin(selected_quarters) &
+    df["Usage"].isin(selected_usage) &
+    df["LINE"].isin(selected_line) &
+    df["SEGMENTS"].isin(selected_segments)
 ].copy()
-
-
 
 total_units = filtered_df["SALES UNITS"].sum()
 total_value = filtered_df["SALES PLN"].sum()
-market_asp = total_value / total_units if total_units else 0
+market_asp = total_value / total_units if total_units != 0 else 0
 
 nexus_df = filtered_df[filtered_df["VENDOR"] == "NEXUS"]
 
 nexus_units = nexus_df["SALES UNITS"].sum()
 nexus_value = nexus_df["SALES PLN"].sum()
-market_share = nexus_units / total_units if total_units else 0
-nexus_asp = nexus_value / nexus_units if nexus_units else 0
 
+market_share = nexus_units / total_units if total_units != 0 else 0
+nexus_asp = nexus_value / nexus_units if nexus_units != 0 else 0
 
 st.subheader("Market Overview")
 
@@ -316,8 +281,8 @@ with col2:
 with col3:
     st.metric("Market ASP", f"PLN {market_asp:,.0f}")
 
-
 st.markdown("<br>", unsafe_allow_html=True)
+
 st.subheader("NEXUS Performance")
 
 col1, col2, col3 = st.columns(3)
@@ -331,7 +296,7 @@ with col2:
 with col3:
     st.metric("NEXUS ASP", f"PLN {nexus_asp:,.0f}")
 
-
+st.markdown("<br>", unsafe_allow_html=True)
 
 trend_df = (
     filtered_df
@@ -347,24 +312,24 @@ market_trend = (
     .reset_index(name="TOTAL_UNITS")
 )
 
+nexus_trend = (
+    trend_df[trend_df["VENDOR"] == "NEXUS"]
+    .groupby("QUARTERS")["SALES UNITS"]
+    .sum()
+    .reset_index(name="NEXUS_UNITS")
+)
+
+polaris_trend = (
+    trend_df[trend_df["VENDOR"] == "POLARIS"]
+    .groupby("QUARTERS")["SALES UNITS"]
+    .sum()
+    .reset_index(name="POLARIS_UNITS")
+)
+
 vendor_trend = (
     market_trend[["QUARTERS", "TOTAL_UNITS"]]
-    .merge(
-        trend_df[trend_df["VENDOR"] == "NEXUS"]
-        .groupby("QUARTERS")["SALES UNITS"]
-        .sum()
-        .reset_index(name="NEXUS_UNITS"),
-        on="QUARTERS",
-        how="left"
-    )
-    .merge(
-        trend_df[trend_df["VENDOR"] == "POLARIS"]
-        .groupby("QUARTERS")["SALES UNITS"]
-        .sum()
-        .reset_index(name="POLARIS_UNITS"),
-        on="QUARTERS",
-        how="left"
-    )
+    .merge(nexus_trend, on="QUARTERS", how="left")
+    .merge(polaris_trend, on="QUARTERS", how="left")
     .fillna(0)
 )
 
@@ -374,47 +339,50 @@ vendor_trend["OTHERS_UNITS"] = (
     - vendor_trend["POLARIS_UNITS"]
 )
 
-for vendor in ["NEXUS", "POLARIS", "OTHERS"]:
-    vendor_trend[f"{vendor}_SHARE"] = (
-        vendor_trend[f"{vendor}_UNITS"] / vendor_trend["TOTAL_UNITS"]
-    )
+vendor_trend["NEXUS_SHARE"] = (
+    vendor_trend["NEXUS_UNITS"] /
+    vendor_trend["TOTAL_UNITS"]
+)
 
+vendor_trend["POLARIS_SHARE"] = (
+    vendor_trend["POLARIS_UNITS"] /
+    vendor_trend["TOTAL_UNITS"]
+)
 
+vendor_trend["OTHERS_SHARE"] = (
+    vendor_trend["OTHERS_UNITS"] /
+    vendor_trend["TOTAL_UNITS"]
+)
 
-st.markdown("<br>", unsafe_allow_html=True)
 st.subheader("Market Position Over Time")
 
 col1, col2 = st.columns(2)
 
 with col1:
     with st.container(border=True):
-        st.markdown(
-            '<div class="chart-title">Total Market Sales Volume Over Time</div>',
-            unsafe_allow_html=True
-        )
-
+        st.markdown("**Total Market Sales Volume Over Time**")
         fig1 = px.line(
             market_trend,
             x="QUARTERS",
             y="TOTAL_UNITS",
             markers=True
         )
-
         fig1.update_traces(
             line=dict(color="#e2231a", width=3),
             marker=dict(size=7)
         )
-
-        line_layout(
-            fig1,
-            market_trend["QUARTERS"],
-            "Sales Volume",
-            sparse_x=False
+        fig1.update_layout(
+            xaxis_title="Quarter",
+            yaxis_title="Sales Volume",
+            xaxis=dict(tickangle=-45),
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            margin=dict(l=20, r=20, t=10, b=20)
         )
-
         st.plotly_chart(
             fig1,
             use_container_width=True,
+            height=405,
             config={"displayModeBar": False}
         )
 
@@ -422,129 +390,143 @@ with col2:
     with st.container(border=True):
         st.subheader("Key Takeaways")
 
-        takeaway(
-            1,
-            "NEXUS is virtually tied with POLARIS",
-            "Both brands hold around 25% of total market volume share."
+        st.markdown(
+            """
+            <div class="takeaway-box">
+                <div class="takeaway-title">1. NEXUS is virtually tied with POLARIS</div>
+                <div class="takeaway-text">
+                    Both brands hold around 25% of total market volume share.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-        takeaway(
-            2,
-            "Growth was not driven by lower pricing",
-            "NEXUS gained market share without a consistent low-price advantage, "
-            "suggesting growth was driven by factors beyond relative pricing."
+        st.markdown(
+            """
+            <div class="takeaway-box">
+                <div class="takeaway-title">2. Growth was not driven by lower pricing</div>
+                <div class="takeaway-text">
+                    NEXUS gained market share without a consistent low-price advantage,
+                    suggesting growth was driven by factors beyond relative pricing.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-        takeaway(
-            3,
-            "Growth is concentrated in one key group",
-            "Home & Business × Consumer × Non Convertible gained "
-            "<b>+17.45 pp</b> in share (from 2022 to 2025) and accounts for "
-            "<b>40.4%</b> of NEXUS sales."
+        st.markdown(
+            """
+            <div class="takeaway-box">
+                <div class="takeaway-title">3. Growth is concentrated in one key group</div>
+                <div class="takeaway-text">
+                    Home & Business × Consumer × Non Convertible gained
+                    <b>+17.45 pp</b> in share (from 2022 to 2025) and accounts for <b>40.4%</b> of NEXUS sales.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-        st.caption(
-            "Strategic insights are based on the full period analysis: 2022 - YTD 2026"
-        )
-
-
+        st.caption("Strategic insights are based on the full period analysis: 2022 - YTD 2026")
 
 col1, col2 = st.columns(2)
 
 with col1:
     with st.container(border=True):
-        st.markdown(
-            '<div class="chart-title">Vendor Sales Volume Over Time</div>',
-            unsafe_allow_html=True
-        )
-
+        st.markdown("**Vendor Sales Volume Over Time**")
         fig5 = px.line(
             vendor_trend,
             x="QUARTERS",
             y=["NEXUS_UNITS", "POLARIS_UNITS", "OTHERS_UNITS"],
             markers=True
         )
-
-        colors = {
-            "NEXUS_UNITS": "#E2231A",
-            "POLARIS_UNITS": "#D98B86",
-            "OTHERS_UNITS": "#A52A2A"
-        }
-
+        fig5.update_traces(
+            line=dict(width=3),
+            marker=dict(size=7)
+        )
         fig5.for_each_trace(
             lambda trace: trace.update(
-                line=dict(color=colors[trace.name], width=3),
-                marker=dict(size=7)
+                line=dict(
+                    color={
+                        "NEXUS_UNITS": "#E2231A",
+                        "POLARIS_UNITS": "#D98B86",
+                        "OTHERS_UNITS": "#A52A2A"
+                    }[trace.name],
+                    width=3
+                )
             )
         )
-
-        line_layout(
-            fig5,
-            vendor_trend["QUARTERS"],
-            "Sales Volume",
-            sparse_x=True,
-            legend=True
+        fig5.update_layout(
+            xaxis_title="Quarter",
+            yaxis_title="Sales Volume",
+            xaxis=dict(tickangle=-45),
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            margin=dict(l=20, r=20, t=10, b=20),
+            legend_title="Vendor"
         )
-
         st.plotly_chart(
             fig5,
             use_container_width=True,
+            height=405,
             config={"displayModeBar": False}
         )
 
 with col2:
     with st.container(border=True):
-        st.markdown(
-            '<div class="chart-title">Vendor Market Share Over Time</div>',
-            unsafe_allow_html=True
-        )
-
+        st.markdown("**Vendor Market Share Over Time**")
         fig6 = px.line(
             vendor_trend,
             x="QUARTERS",
             y=["NEXUS_SHARE", "POLARIS_SHARE", "OTHERS_SHARE"],
             markers=True
         )
-
-        colors = {
-            "NEXUS_SHARE": "#526D86",
-            "POLARIS_SHARE": "#8FA3B5",
-            "OTHERS_SHARE": "#102845"
-        }
-
+        fig6.update_traces(
+            line=dict(width=3),
+            marker=dict(size=7)
+        )
         fig6.for_each_trace(
             lambda trace: trace.update(
-                line=dict(color=colors[trace.name], width=3),
-                marker=dict(size=7)
+                line=dict(
+                    color={
+                        "NEXUS_SHARE": "#526D86",
+                        "POLARIS_SHARE": "#8FA3B5",
+                        "OTHERS_SHARE": "#102845"
+                    }[trace.name],
+                    width=3
+                )
             )
         )
-
-        line_layout(
-            fig6,
-            vendor_trend["QUARTERS"],
-            "Market Share",
-            sparse_x=True,
-            percent=True,
-            legend=True
+        fig6.update_yaxes(tickformat=".0%")
+        fig6.update_layout(
+            xaxis_title="Quarter",
+            yaxis_title="Market Share",
+            xaxis=dict(tickangle=-45),
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            margin=dict(l=20, r=20, t=10, b=20),
+            legend_title="Vendor"
         )
-
         st.plotly_chart(
             fig6,
             use_container_width=True,
+            height=405,
             config={"displayModeBar": False}
         )
-
-
 
 st.markdown("<br>", unsafe_allow_html=True)
 st.subheader("Price Band Breakdown")
 
 price_df = filtered_df[
-    (filtered_df["SALES UNITS"] > 0)
-    & (filtered_df["SALES PLN"] >= 0)
+    (filtered_df["SALES UNITS"] > 0) &
+    (filtered_df["SALES PLN"] >= 0)
 ].copy()
 
-price_df["ASP"] = price_df["SALES PLN"] / price_df["SALES UNITS"]
+price_df["ASP"] = (
+    price_df["SALES PLN"] /
+    price_df["SALES UNITS"]
+)
 
 price_df["PRICE_BAND"] = pd.cut(
     price_df["ASP"],
@@ -562,70 +544,71 @@ market_band = (
 market_band_share = market_band / market_band.sum()
 
 nexus_band = (
-    price_df[price_df["VENDOR"] == "NEXUS"]
+    price_df[
+        price_df["VENDOR"] == "NEXUS"
+    ]
     .groupby("PRICE_BAND", observed=False)["SALES UNITS"]
     .sum()
 )
 
 nexus_band_share = (
     nexus_band / nexus_band.sum()
-    if nexus_band.sum()
+    if nexus_band.sum() != 0
     else nexus_band * 0
 )
-
 
 col1, col2 = st.columns(2)
 
 with col1:
     with st.container(border=True):
-        st.markdown(
-            '<div class="chart-title">Total Market Sales by Price Band</div>',
-            unsafe_allow_html=True
-        )
-
+        st.markdown("**Total Market Sales by Price Band**")
         fig3 = px.bar(
             x=market_band_share.index,
             y=market_band_share.values,
             text=market_band_share.values
         )
-
         fig3.update_traces(
             marker_color="#0b1f3a",
             texttemplate="%{text:.1%}"
         )
-
         fig3.update_yaxes(tickformat=".0%")
-        bar_layout(fig3)
-
+        fig3.update_layout(
+            xaxis_title="Price Band",
+            yaxis_title="Share of Sales",
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            margin=dict(l=20, r=20, t=10, b=20)
+        )
         st.plotly_chart(
             fig3,
             use_container_width=True,
+            height=405,
             config={"displayModeBar": False}
         )
 
 with col2:
     with st.container(border=True):
-        st.markdown(
-            '<div class="chart-title">NEXUS Sales by Price Band</div>',
-            unsafe_allow_html=True
-        )
-
+        st.markdown("**NEXUS Sales by Price Band**")
         fig4 = px.bar(
             x=nexus_band_share.index,
             y=nexus_band_share.values,
             text=nexus_band_share.values
         )
-
         fig4.update_traces(
             marker_color="#e2231a",
             texttemplate="%{text:.1%}"
         )
-
         fig4.update_yaxes(tickformat=".0%")
-        bar_layout(fig4)
-
+        fig4.update_layout(
+            xaxis_title="Price Band",
+            yaxis_title="Share of Sales",
+            plot_bgcolor="white",
+            paper_bgcolor="white",
+            margin=dict(l=20, r=20, t=10, b=20)
+        )
         st.plotly_chart(
             fig4,
             use_container_width=True,
+            height=405,
             config={"displayModeBar": False}
         )
