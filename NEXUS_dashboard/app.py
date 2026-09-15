@@ -366,7 +366,7 @@ with col2:
             """,
             unsafe_allow_html=True
         )
-        st.caption("Strategic insights are based on the full period analysis - 2022 - YTD 2026")
+        st.caption("Strategic insights are based on the full period analysis: 2022 - YTD 2026")
 
 col1, col2 = st.columns(2)
 
