@@ -87,6 +87,7 @@ st.markdown("""
     padding: 0 !important;
 }
 
+
 [data-testid="stSidebar"] [data-testid="stHorizontalBlock"] {
     gap: 0.35rem !important;
 }
@@ -165,9 +166,16 @@ div[data-testid="stPlotlyChart"] {
     min-height: 23px !important;
 }
 
-[data-testid="stSidebar"] [data-testid="stCheckbox"] label {
-    font-size: 9px !important;
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label p {
+    font-size: 12px !important;
     line-height: 1.1 !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stCheckbox"] label {
+    gap: 5px !important;
+    overflow: visible !important;
 }
 
 [data-testid="stSidebar"] [data-testid="stCheckbox"] > label > div:first-child {
