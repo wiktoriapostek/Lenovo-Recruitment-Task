@@ -426,9 +426,9 @@ with col2:
             lambda trace: trace.update(
                 line=dict(
                     color={
-                        "NEXUS_SHARE": "#8FA3B5",
-                        "POLARIS_SHARE": "#102845",
-                        "OTHERS_SHARE": "#526D86"
+                        "NEXUS_SHARE": "#526D86",
+                        "POLARIS_SHARE": "#8FA3B5",
+                        "OTHERS_SHARE": "#102845"
                     }[trace.name],
                     width=3
                 )
