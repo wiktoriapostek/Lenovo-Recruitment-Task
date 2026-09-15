@@ -249,7 +249,7 @@ def takeaway(number, title, text):
 
 
 
-df = pd.read_csv("data/sales.csv", sep=";")
+df = pd.read_csv("NEXUS_dashboard/data/sales.csv.gz", sep=";")
 
 
 
