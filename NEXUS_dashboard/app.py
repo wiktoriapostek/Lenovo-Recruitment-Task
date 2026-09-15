@@ -162,7 +162,7 @@ div[data-testid="stPlotlyChart"] {
 df = pd.read_csv("NEXUS_dashboard/data/sales.csv.gz", sep=";")
 
 st.title("NEXUS Executive Dashboard")
-st.caption("Poland PC/Laptop Market | 2022–YTD 2026")
+st.caption("Poland PC/Laptop Market | 2022 – YTD 2026")
 st.markdown("<hr>", unsafe_allow_html=True)
 
 st.sidebar.header("Filters")
@@ -366,6 +366,8 @@ with col2:
             """,
             unsafe_allow_html=True
         )
+        st.caption("Strategic insights are based on the full period analysis - 2022 - YTD 2026")
+
 col1, col2 = st.columns(2)
 
 with col1:
