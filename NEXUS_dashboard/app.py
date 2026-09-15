@@ -427,8 +427,8 @@ with col2:
                 line=dict(
                     color={
                         "NEXUS_SHARE": "#8FA3B5",
-                        "POLARIS_SHARE": "#526D86",
-                        "OTHERS_SHARE": "#102845"
+                        "POLARIS_SHARE": "#102845",
+                        "OTHERS_SHARE": "#526D86"
                     }[trace.name],
                     width=3
                 )
