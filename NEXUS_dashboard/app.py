@@ -466,14 +466,17 @@ with col1:
             )
         )
         fig5.update_layout(
-            xaxis_title="Quarter",
-            yaxis_title="Sales Volume",
-            xaxis=dict(tickangle=-45),
-            dtick=2,
-            plot_bgcolor="white",
-            paper_bgcolor="white",
-            margin=dict(l=20, r=20, t=10, b=20),
-            legend_title="Vendor"
+        xaxis_title="Quarter",
+        yaxis_title="Sales Volume",
+        xaxis=dict(
+            tickangle=-45,
+            tickmode="array",
+            tickvals=vendor_trend["QUARTERS"][::2]
+        ),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        margin=dict(l=20, r=20, t=10, b=20),
+        legend_title="Vendor"
         )
         st.plotly_chart(
             fig5,
@@ -509,14 +512,17 @@ with col2:
         )
         fig6.update_yaxes(tickformat=".0%")
         fig6.update_layout(
-            xaxis_title="Quarter",
-            yaxis_title="Market Share",
-            xaxis=dict(tickangle=-45),
-            dtick=2,
-            plot_bgcolor="white",
-            paper_bgcolor="white",
-            margin=dict(l=20, r=20, t=10, b=20),
-            legend_title="Vendor"
+        xaxis_title="Quarter",
+        yaxis_title="Market Share",
+        xaxis=dict(
+            tickangle=-45,
+            tickmode="array",
+            tickvals=vendor_trend["QUARTERS"][::2]
+        ),
+        plot_bgcolor="white",
+        paper_bgcolor="white",
+        margin=dict(l=20, r=20, t=10, b=20),
+        legend_title="Vendor"
         )
         st.plotly_chart(
             fig6,
