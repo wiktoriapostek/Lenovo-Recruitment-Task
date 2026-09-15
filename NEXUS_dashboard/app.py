@@ -576,7 +576,7 @@ with col1:
             text=market_band_share.values
         )
         fig3.update_traces(
-            marker_color="#0b1f3a",
+            marker_color="#102845",
             texttemplate="%{text:.1%}"
         )
         fig3.update_yaxes(tickformat=".0%")
